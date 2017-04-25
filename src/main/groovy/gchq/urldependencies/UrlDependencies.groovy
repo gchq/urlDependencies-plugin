@@ -25,7 +25,6 @@ class UrlDependencies implements Plugin<Project> {
         project.extensions.create("urlDependencies", UrlDependenciesExtension)
 
         project.task('downloadUrlDependencies') {
-//            shouldRunAfter 'assemble'
             doLast {
                 for(dependency in project.urlDependencies.dependencies){
                     download(dependency.value, "libs/${dependency.key}.jar")
