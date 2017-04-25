@@ -1,14 +1,28 @@
+
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group = 'gchq'
+version = 'v0.1'
 
 repositories {
     jcenter()
+    mavenLocal()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+//    compile 'org.codehaus.groovy:groovy-all:2.4.7'
     compile gradleApi()
 
     testCompile 'junit:junit:4.12'
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}

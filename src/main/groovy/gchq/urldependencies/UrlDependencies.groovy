@@ -1,10 +1,12 @@
+package gchq.urldependencies
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class UrlDependency implements Plugin<Project> {
+class UrlDependencies implements Plugin<Project> {
     void apply(Project project) {
 
-        project.extensions.create("urlDependencies", UrlDependencyExtension)
+        project.extensions.create("urlDependencies", UrlDependenciesExtension)
 
         project.task('downloadUrlDependencies') {
             shouldRunAfter 'assemble'

@@ -1,7 +1,9 @@
+package gchq.urldependencies
+
 import org.gradle.api.file.FileCollection
 import org.gradle.api.internal.file.collections.SimpleFileCollection
 
-class UrlDependencyExtension {
+class UrlDependenciesExtension {
     def dependencies = [:]
     def libs = "libs"
 
