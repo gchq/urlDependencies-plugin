@@ -28,7 +28,7 @@ class UrlDependenciesExtension {
     }
 
     String getAsPath(String name){
-        return "libs/${name}.jar"
+        return "${libs}/${name}.jar"
     }
 
     FileCollection getAsFile(String path){

@@ -26,29 +26,29 @@ class UrlDependencies implements Plugin<Project> {
 
         project.task('downloadUrlDependencies') {
             doLast {
+                // Create the libs folder if it doesn't already exist
+                def libsDir = new File(project.urlDependencies.libs)
+                libsDir.mkdir()
+
                 for(dependency in project.urlDependencies.dependencies){
-                    download(dependency.value, "libs/${dependency.key}.jar")
+                    download(dependency.value, "${project.urlDependencies.libs}/${dependency.key}.jar")
                 }
             }
         }
     }
 
-    def download(String remoteUrl, String localUrl) {
+    def download(String sourceUrl, String destinationPath) {
         // TODO This works for getting the content length - using this would make the selective download more
         // sophisticated - the user wouldn't have to delete the files to re-download. But if the deps
         // are named with version this probably won't be a big issue.
 //        URLConnection connection = new URL(remoteUrl).openConnection()
 //        def contentLength = connection.contentLength
 
-        // Create the libs folder if it doesn't already exist
-        def libsDir = new File("libs")
-        libsDir.mkdir()
-
         // Download the file, if it doesn't already exist.
-        def file = new File(localUrl)
+        def file = new File(destinationPath)
         if(!file.exists()) {
-            new File("$localUrl").withOutputStream { out ->
-                new URL(remoteUrl).withInputStream { from -> out << from }
+            new File("$destinationPath").withOutputStream { out ->
+                new URL(sourceUrl).withInputStream { from -> out << from }
             }
         }
     }
