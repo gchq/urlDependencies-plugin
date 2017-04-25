@@ -40,6 +40,11 @@ class UrlDependencies implements Plugin<Project> {
 //        URLConnection connection = new URL(remoteUrl).openConnection()
 //        def contentLength = connection.contentLength
 
+        // Create the libs folder if it doesn't already exist
+        def libsDir = new File("libs")
+        libsDir.mkdir()
+
+        // Download the file, if it doesn't already exist.
         def file = new File(localUrl)
         if(!file.exists()) {
             new File("$localUrl").withOutputStream { out ->
