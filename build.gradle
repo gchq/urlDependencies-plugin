@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-//    compile 'org.codehaus.groovy:groovy-all:2.4.7'
     compile gradleApi()
 
     testCompile 'junit:junit:4.12'
