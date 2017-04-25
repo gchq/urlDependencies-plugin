@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile gradleApi()
+
+    testCompile 'junit:junit:4.12'
+}
+

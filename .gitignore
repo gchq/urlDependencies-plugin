@@ -1,0 +1,12 @@
+.gradle/
+build
+
+# IntelliJ
+# Here we ignore everything and create exceptions for what we want to share.
+/out/
+*.iml
+*.ipr
+*.iws
+/.idea/*
+!/.idea/runConfigurations
+
