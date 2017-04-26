@@ -36,5 +36,9 @@ dependencies {
   compile urlDependencies.get('stroom-query-api-6.0-beta.1-SNAPSHOT')
 }
 ```
-
-That's it!
+### Running a build
+To actually download the dependencies you'll need to run the task `downloadUrlDependencies`, like this:
+```bash
+./gradlew downloadUrlDependencies clean build
+```
+You won't need to run this task again unless your dependencies change. This task won't download a dependency if there's already a file with that name. If you want to re-download a dependency, or if a dependency has changed but it's file name hasn't, then you'll need to delete that dependency from your `lib` directory.
