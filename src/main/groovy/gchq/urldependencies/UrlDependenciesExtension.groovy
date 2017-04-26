@@ -21,6 +21,7 @@ import org.gradle.api.internal.file.collections.SimpleFileCollection
 
 class UrlDependenciesExtension {
     def dependencies = [:]
+    def projectRootDir
     def libs = "libs"
 
     void compile(String name, String url){
@@ -28,7 +29,7 @@ class UrlDependenciesExtension {
     }
 
     String getAsPath(String name){
-        return "${libs}/${name}.jar"
+        return "$projectRootDir/${libs}/${name}.jar"
     }
 
     FileCollection getAsFile(String path){

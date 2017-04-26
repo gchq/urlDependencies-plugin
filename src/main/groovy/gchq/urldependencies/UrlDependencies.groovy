@@ -23,6 +23,7 @@ class UrlDependencies implements Plugin<Project> {
     void apply(Project project) {
 
         project.extensions.create("urlDependencies", UrlDependenciesExtension)
+        project.urlDependencies.projectRootDir = project.getRootDir()
 
         project.task('downloadUrlDependencies') {
             doLast {
