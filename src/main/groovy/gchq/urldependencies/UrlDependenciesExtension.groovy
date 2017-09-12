@@ -18,25 +18,48 @@ package gchq.urldependencies
 
 import org.gradle.api.file.FileCollection
 import org.gradle.api.internal.file.collections.SimpleFileCollection
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class UrlDependenciesExtension {
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     def dependencies = [:]
     def projectRootDir
     def libs = "libs"
 
     void compile(String name, String url){
+        if (name == null || name.isEmpty()) {
+            throw new RuntimeException("name cannot be null or empty")
+        }
+        if (url == null || url.isEmpty()) {
+            throw new RuntimeException("url cannot be null or empty")
+        }
+        LOGGER.debug("compile called for name [${name}] url [${url}]")
         dependencies.put(name, url)
     }
 
     String getAsPath(String name){
-        return "$projectRootDir/${libs}/${name}.jar"
+        if (name == null || name.isEmpty()) {
+            throw new RuntimeException("name cannot be null or empty")
+        }
+        String path = "$projectRootDir/${libs}/${name}.jar"
+        LOGGER.debug("getAsPath called for name [${name}], returning ${path}")
+        return path
     }
 
     FileCollection getAsFile(String path){
+        if (path == null || path.isEmpty()) {
+            throw new RuntimeException("path cannot be null or empty")
+        }
+        LOGGER.debug("getAsFile called for [${path}]")
         return new SimpleFileCollection(new File(path))
     }
 
     FileCollection get(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new RuntimeException("name cannot be null or empty")
+        }
         return new SimpleFileCollection(new File(getAsPath(name)))
     }
 }

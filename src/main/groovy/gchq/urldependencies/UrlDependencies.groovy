@@ -18,8 +18,12 @@ package gchq.urldependencies
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class UrlDependencies implements Plugin<Project> {
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     void apply(Project project) {
 
         project.extensions.create("urlDependencies", UrlDependenciesExtension)
@@ -32,7 +36,9 @@ class UrlDependencies implements Plugin<Project> {
                 libsDir.mkdir()
 
                 for(dependency in project.urlDependencies.dependencies){
-                    download(dependency.value, "${project.urlDependencies.libs}/${dependency.key}.jar")
+                    String destPath = "${project.urlDependencies.libs}/${dependency.key}.jar"
+                    LOGGER.info("Downloading dependency ${dependency.value} to ${destPath}")
+                    download(dependency.value, destPath)
                 }
             }
         }

@@ -5,7 +5,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group = 'gchq'
-version = 'v0.1'
+version = 'v0.2.0'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
